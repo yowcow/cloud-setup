@@ -5,6 +5,10 @@ resource "google_project_iam_custom_role" "certbot-renew-role" {
     "dns.changes.create",
     "dns.changes.get",
     "dns.changes.list",
+    "dns.dnsKeys.get",
+    "dns.dnsKeys.list",
+    "dns.managedZoneOperations.get",
+    "dns.managedZoneOperations.list",
     "dns.managedZones.get",
     "dns.managedZones.list",
     "dns.resourceRecordSets.create",
@@ -21,6 +25,14 @@ resource "google_service_account" "certbot-account" {
 
 resource "google_service_account_iam_member" "certbot-account-iam" {
   service_account_id = google_service_account.certbot-account.name
-  role               = "projects/${var.project}/roles/certbot.renewer"
+  role               = google_project_iam_custom_role.certbot-renew-role.name
   member             = "serviceAccount:${google_service_account.certbot-account.email}"
+}
+
+resource "google_project_iam_binding" "certbot-binding" {
+  project = var.project
+  role    = google_project_iam_custom_role.certbot-renew-role.name
+  members = [
+    "serviceAccount:${google_service_account.certbot-account.email}"
+  ]
 }
