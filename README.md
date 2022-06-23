@@ -1,4 +1,4 @@
-yowcow cloud config
-===================
+cloud setup
+===========
 
-My cloud configuration
+My cloud setup
