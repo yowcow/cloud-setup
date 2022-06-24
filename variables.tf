@@ -1,21 +1,24 @@
-variable "credentials_file" {
-  type    = string
-  default = ".yowcow-terraformer.json"
+variable "credentials" {
+  type        = string
+  description = "Credentials file"
 }
 
 variable "project" {
-  type    = string
-  default = "beaconsco"
+  type        = string
+  description = "Project ID"
+  default     = "beaconsco"
 }
 
 variable "region" {
-  type    = string
-  default = "asia-northeast1"
+  type        = string
+  description = "Region"
+  default     = "asia-northeast1"
 }
 
 variable "zone" {
-  type    = string
-  default = "asia-northeast1-c"
+  type        = string
+  description = "Zone"
+  default     = "asia-northeast1-c"
 }
 
 variable "dns_zones" {
@@ -24,6 +27,7 @@ variable "dns_zones" {
     dns_name  = string
     ipv4      = string
   }))
+  description = "DNS Zones"
   default = [
     {
       zone_name = "terraform-x28-co",
