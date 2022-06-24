@@ -5,6 +5,10 @@ terraform {
       version = "4.26.0"
     }
   }
+
+  backend "gcs" {
+    bucket = "yowcow-terraform"
+  }
 }
 
 provider "google" {
