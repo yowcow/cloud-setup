@@ -1,5 +1,5 @@
 resource "google_compute_address" "www-x28" {
-  name         = "www-x28"
+  name = "www-x28"
 }
 
 resource "google_compute_instance" "www-x28" {
