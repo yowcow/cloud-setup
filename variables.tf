@@ -12,13 +12,13 @@ variable "project" {
 variable "region" {
   type        = string
   description = "Region"
-  default     = "asia-northeast1"
+  default     = "us-west1"
 }
 
 variable "zone" {
   type        = string
   description = "Zone"
-  default     = "asia-northeast1-c"
+  default     = "us-west1-c"
 }
 
 variable "dns_zones" {
