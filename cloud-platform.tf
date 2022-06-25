@@ -36,3 +36,8 @@ resource "google_project_iam_binding" "certbot-binding" {
     "serviceAccount:${google_service_account.certbot-account.email}"
   ]
 }
+
+resource "google_service_account" "gce-account" {
+  account_id   = "terraform-gce"
+  display_name = "GCE service account"
+}
