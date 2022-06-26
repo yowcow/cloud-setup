@@ -1,5 +1,5 @@
-/.terraform*
-/.yowcow*
+.terraform*
+.yowcow*
 
 *.tfstate*
 *.gpg

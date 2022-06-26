@@ -1,14 +1,10 @@
 CREDENTIALS := ./.yowcow-terraformer.json
-TERRAFORM := TF_VAR_credentials=$(CREDENTIALS) terraform
-TERRAFORM_TARGETS := fmt validate plan apply destroy
+MAKEFILES := ./env/common/Makefile ./env/x19-dev/Makefile ./env/x28-co/Makefile
 
-all: $(CREDENTIALS)
-	$(TERRAFORM) init -backend-config="credentials=$(CREDENTIALS)"
+all: $(CREDENTIALS) $(MAKEFILES)
 
 $(CREDENTIALS): $(CREDENTIALS).gpg
 	gpg --decrypt --output $@ $<
 
-$(TERRAFORM_TARGETS):
-	$(TERRAFORM) $@
-
-.PHONY: all $(TERRAFORM_TARGETS)
+./env/%/Makefile: env.mk
+	ln -snf $(abspath $<) $@

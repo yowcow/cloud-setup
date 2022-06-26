@@ -7,5 +7,5 @@ HOW TO USE
 ----------
 
 ```
-% make init fmt validate plan apply destroy
+% make -C env/common init fmt validate plan apply destroy
 ```
