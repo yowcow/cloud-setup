@@ -49,3 +49,15 @@ resource "google_dns_record_set" "root-mx" {
     "40 alt4.gmr-smtp-in.l.google.com.",
   ]
 }
+
+resource "google_dns_record_set" "test-a" {
+  for_each = { for i in var.dns_zones : i.zone_name => i }
+
+  name         = "test.${each.value.dns_name}."
+  managed_zone = each.value.zone_name
+  type         = "A"
+  ttl          = 30
+  rrdatas = [
+    google_compute_global_address.www-x28.address
+  ]
+}
