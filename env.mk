@@ -1,6 +1,6 @@
 CREDENTIALS := ../../.yowcow-terraformer.json
 TERRAFORM := TF_VAR_credentials=$(CREDENTIALS) terraform
-TERRAFORM_TARGETS := fmt validate plan apply destroy
+TERRAFORM_TARGETS := init fmt validate plan apply destroy
 
 all: $(CREDENTIALS)
 	$(TERRAFORM) init -backend-config="credentials=$(CREDENTIALS)"
